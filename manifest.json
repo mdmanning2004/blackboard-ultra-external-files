@@ -5,6 +5,14 @@
   "manifest_version": 3,
   "action": {
     "default_popup": "hello.html",
-    "default_icon": "external-link.png"
-  }
+    "default_icon": "images/external-link.png"
+  },
+  "content_scripts": [
+    {
+      "js": ["scripts/content.js"],
+      "matches": [
+        "https://vle.shef.ac.uk/ultra/courses/*"
+      ]
+    }
+  ]
 }
