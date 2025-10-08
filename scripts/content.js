@@ -17,6 +17,8 @@ function waitForElement(selector, callback) {
     childList: true,
     subtree: true
   });
+
+  return observer
 }
 
 function onUrlChange(callback) {
@@ -34,19 +36,22 @@ function onUrlChange(callback) {
 }
 
 function handlePage() {
-  waitForElement('iframe[allow*="clipboard-write"]', (element) => {
-    console.info('Found iframe on this page');
+  if (currentObserver) {
+    currentObserver.disconnect();
+    currentObserver = null;
+  }
+
+  currentObserver = waitForElement('iframe[allow*="clipboard-write"]', (element) => {
     const link = element.getAttribute("src")
-    console.info(link)
     window.open(link)
   });
 }
 
 let lastUrl = location.href;
+let currentObserver = null;
 
 // On first load
 handlePage();
 onUrlChange((newUrl) => {
-  console.log('URL changed to:', newUrl);
   handlePage();
 });
