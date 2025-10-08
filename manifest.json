@@ -1,10 +1,9 @@
 {
-  "name": "Blackboard Ultra External Links",
-  "description": "Adds an 'Open in new tab' button to blackboards new file viewer.",
-  "version": "1.0",
+  "name": "Blackboard Ultra External File Viewing",
+  "description": "Opens any Blackboard Ultra files in new tabs",
+  "version": "1.0.4",
   "manifest_version": 3,
   "action": {
-    "default_popup": "hello.html",
     "default_icon": "images/external-link.png"
   },
   "content_scripts": [
