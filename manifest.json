@@ -13,7 +13,7 @@
     {
       "js": ["scripts/content.js"],
       "matches": [
-        "https://vle.shef.ac.uk/ultra/courses/*"
+        "https://vle.shef.ac.uk/ultra/*"
       ]
     }
   ]
