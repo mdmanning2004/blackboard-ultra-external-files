@@ -18,6 +18,7 @@ A browser extension that automatically opens linked documents in a new tab for a
     - Or, click the Chrome menu, hover over **More Tools**, then select Extensions.
 1. Enable Developer Mode by clicking the toggle switch next to **Developer mode**.
 1. Click the **Load unpacked** button and select the cloned directory
+1. Refresh any already-open Blackboard tabs to activate the extention
 
 ## Usage
  Navigate to any Blackboard Ultra course materials. When you click on the linked document, it will automatically open in a new tab as well as the embedded viewer.
