@@ -41,18 +41,12 @@ function onUrlChange(callback) {
 }
 
 function handlePage() {
-  if (currentObserver) {
-    currentObserver.disconnect();
-    currentObserver = null;
-  }
-
-  currentObserver = waitForElement('iframe[allow*="clipboard-write"]', new Set(), (link) => {
+  waitForElement('iframe[allow*="clipboard-write"]', new Set(), (link) => {
     window.open(link)
   });
 }
 
 let lastUrl = location.href;
-let currentObserver = null;
 let observers = [];
 
 handlePage();
