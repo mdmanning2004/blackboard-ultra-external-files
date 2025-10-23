@@ -1,15 +1,14 @@
-function waitForElement(selector, callback) {
-  const element = document.querySelector(selector);
-  if (element) {
-    callback(element);
-    return;
-  }
-
+function waitForElement(selector, set, callback) {
   const observer = new MutationObserver((mutations) => {
-    const element = document.querySelector(selector);
-    if (element) {
-      observer.disconnect();
-      callback(element);
+    const elements = document.querySelectorAll(selector);
+    for (let i = 0; i < elements.length; i++) {
+      let url = elements[i].getAttribute('src')
+      if (!set.has(url)) {
+        set.add(url)
+        observer.disconnect();
+        callback(url)
+        waitForElement(selector, set, callback)
+      }
     }
   });
 
@@ -41,8 +40,7 @@ function handlePage() {
     currentObserver = null;
   }
 
-  currentObserver = waitForElement('iframe[allow*="clipboard-write"]', (element) => {
-    const link = element.getAttribute("src")
+  currentObserver = waitForElement('iframe[allow*="clipboard-write"]', new Set(), (link) => {
     window.open(link)
   });
 }
@@ -50,7 +48,6 @@ function handlePage() {
 let lastUrl = location.href;
 let currentObserver = null;
 
-// On first load
 handlePage();
 onUrlChange((newUrl) => {
   handlePage();
