@@ -17,6 +17,8 @@ function waitForElement(selector, set, callback) {
     subtree: true
   });
 
+  observers.push(observer)
+
   return observer
 }
 
@@ -24,6 +26,10 @@ function onUrlChange(callback) {
   const observer = new MutationObserver(() => {
     if (location.href !== lastUrl) {
       lastUrl = location.href;
+      for (let i = 0; i < observers.length; i++) {
+        observers[i].disconnect();
+      }
+      observers = [];
       callback(location.href);
     }
   });
@@ -47,6 +53,7 @@ function handlePage() {
 
 let lastUrl = location.href;
 let currentObserver = null;
+let observers = [];
 
 handlePage();
 onUrlChange((newUrl) => {
