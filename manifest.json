@@ -1,7 +1,7 @@
 {
   "name": "Blackboard Ultra External File Viewing",
   "description": "Opens any Blackboard Ultra files in new tabs",
-  "version": "1.0.4",
+  "version": "1.0.6",
   "manifest_version": 3,
   "icons": {
     "16": "images/icon/16.png",

@@ -42,7 +42,9 @@ function onUrlChange(callback) {
 
 function handlePage() {
   waitForElement('iframe[allow*="clipboard-write"]', new Set(), (link) => {
-    window.open(link)
+    if (link.startsWith("https://vle.shef.ac.uk/bbcswebdav/")) {
+      window.open(link)
+    }
   });
 }
 
